@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Twenty.BD.Data.Entity
 {
-    public class Entrenador
+    public class Entrenador : EntityBase
     {
         public string Nombre { get; set; }
 
