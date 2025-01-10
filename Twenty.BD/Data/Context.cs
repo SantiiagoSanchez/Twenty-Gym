@@ -15,6 +15,7 @@ namespace Twenty.BD.Data
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Dificultad> Dificultades { get; set; }
         public DbSet<Entrenador> Entrenadores { get; set; }
+        public DbSet<TipoEntrenamiento> TipoEntrenamientos { get; set; }
         public Context(DbContextOptions options) : base(options)
         {
         }
