@@ -12,15 +12,17 @@ namespace Twenty.BD.Data.Entity
 
         public string Descripcion { get; set; }
 
-        public string Dificultad {  get; set; } //Principiante, Intermedio, Avanzado - Necesita Tabla
+        public int DificultadId { get; set; }
+        public Dificultad? Dificultad {  get; set; }
 
         public string Duracion { get; set; } 
 
         public string Horario { get; set; }
 
-        public string TipoDeEntrenamiento { get; set; } //Flexibilidad, Musculacion, Fuerza, Cardio, etc. - Necesita Tabla
+        public int TipoEntrenamientoId { get; set; }
+        public TipoEntrenamiento? TipoDeEntrenamiento { get; set; }
 
-        public int Precio {  get; set; } //Precio de la actividad
+        public int Precio {  get; set; }
 
     }
 }

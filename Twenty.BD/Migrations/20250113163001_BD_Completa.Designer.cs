@@ -12,8 +12,8 @@ using Twenty.BD.Data;
 namespace Twenty.BD.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250110150203_Tabla_TEntrenamiento")]
-    partial class Tabla_TEntrenamiento
+    [Migration("20250113163001_BD_Completa")]
+    partial class BD_Completa
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,9 +37,8 @@ namespace Twenty.BD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Dificultad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DificultadId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Duracion")
                         .IsRequired()
@@ -56,11 +55,14 @@ namespace Twenty.BD.Migrations
                     b.Property<int>("Precio")
                         .HasColumnType("int");
 
-                    b.Property<string>("TipoDeEntrenamiento")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TipoEntrenamientoId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DificultadId");
+
+                    b.HasIndex("TipoEntrenamientoId");
 
                     b.ToTable("Actividades");
                 });
@@ -73,9 +75,8 @@ namespace Twenty.BD.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Actividad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ActividadId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Alergias")
                         .HasColumnType("bit");
@@ -94,9 +95,8 @@ namespace Twenty.BD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Entrenador")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EntrenadorId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("FechaInscripcion")
                         .HasColumnType("datetime2");
@@ -123,6 +123,10 @@ namespace Twenty.BD.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ActividadId");
+
+                    b.HasIndex("EntrenadorId");
 
                     b.ToTable("Clientes");
                 });
@@ -152,9 +156,8 @@ namespace Twenty.BD.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Actividad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ActividadId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Apellido")
                         .IsRequired()
@@ -176,6 +179,8 @@ namespace Twenty.BD.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ActividadId");
+
                     b.ToTable("Entrenadores");
                 });
 
@@ -194,6 +199,55 @@ namespace Twenty.BD.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TipoEntrenamientos");
+                });
+
+            modelBuilder.Entity("Twenty.BD.Data.Entity.Actividad", b =>
+                {
+                    b.HasOne("Twenty.BD.Data.Entity.Dificultad", "Dificultad")
+                        .WithMany()
+                        .HasForeignKey("DificultadId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Twenty.BD.Data.Entity.TipoEntrenamiento", "TipoDeEntrenamiento")
+                        .WithMany()
+                        .HasForeignKey("TipoEntrenamientoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Dificultad");
+
+                    b.Navigation("TipoDeEntrenamiento");
+                });
+
+            modelBuilder.Entity("Twenty.BD.Data.Entity.Cliente", b =>
+                {
+                    b.HasOne("Twenty.BD.Data.Entity.Actividad", "Actividad")
+                        .WithMany()
+                        .HasForeignKey("ActividadId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Twenty.BD.Data.Entity.Entrenador", "Entrenador")
+                        .WithMany()
+                        .HasForeignKey("EntrenadorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Actividad");
+
+                    b.Navigation("Entrenador");
+                });
+
+            modelBuilder.Entity("Twenty.BD.Data.Entity.Entrenador", b =>
+                {
+                    b.HasOne("Twenty.BD.Data.Entity.Actividad", "Actividad")
+                        .WithMany()
+                        .HasForeignKey("ActividadId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Actividad");
                 });
 #pragma warning restore 612, 618
         }

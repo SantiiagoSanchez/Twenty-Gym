@@ -16,9 +16,9 @@ namespace Twenty.BD.Data.Entity
 
         public int Telefono { get; set; }
 
-        public string Sexo {  get; set; } //Necesita Tabla
+        public string Sexo {  get; set; }
 
-        public int Edad { get; set; }
+        public int Edad { get; set; }     
 
         public DateTime FechaInscripcion {  get; set; }
 
@@ -32,9 +32,11 @@ namespace Twenty.BD.Data.Entity
 
         public int TelefonoEmergencia { get; set; }
 
-        public string Entrenador {  get; set; } //Necesita Tabla
+        public int EntrenadorId {  get; set; }
+        public Entrenador? Entrenador {  get; set; } 
 
-        public string Actividad {  get; set; } //Necesita Tabla
+        public int ActividadId { get; set; }
+        public Actividad? Actividad {  get; set; } 
 
     }
 }

@@ -18,6 +18,7 @@ namespace Twenty.BD.Data.Entity
 
         public int Telefono { get; set; }
 
-        public string Actividad { get; set; } //Actividad que dicta (Musculacion, Zumba, Strong, Etc.). Necesita una tabla Aparte
+        public int ActividadId { get; set; }
+        public Actividad? Actividad { get; set; }
     }
 }
