@@ -12,6 +12,8 @@ namespace Twenty.BD.Data.Entity
 
         public string Apellido { get; set; }
 
+        public string Documento { get; set; }
+
         public int Edad {  get; set; }
 
         public string Email { get; set; }

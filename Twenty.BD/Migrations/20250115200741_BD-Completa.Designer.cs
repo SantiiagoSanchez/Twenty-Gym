@@ -12,8 +12,8 @@ using Twenty.BD.Data;
 namespace Twenty.BD.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250113163001_BD_Completa")]
-    partial class BD_Completa
+    [Migration("20250115200741_BD-Completa")]
+    partial class BDCompleta
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,10 @@ namespace Twenty.BD.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Direccion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Documento")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -160,6 +164,10 @@ namespace Twenty.BD.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Documento")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

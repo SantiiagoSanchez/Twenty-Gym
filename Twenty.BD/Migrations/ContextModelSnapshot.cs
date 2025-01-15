@@ -85,6 +85,10 @@ namespace Twenty.BD.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Documento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
@@ -157,6 +161,10 @@ namespace Twenty.BD.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Documento")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
