@@ -48,5 +48,21 @@ namespace Twenty.Server.Controllers
 
             return Existe;
         }
+
+        [HttpPost]
+        public async Task<ActionResult<int>> Post(Cliente entidad) 
+        {
+            try
+            {
+                context.Clientes.Add(entidad);
+                await context.SaveChangesAsync();
+                return entidad.Id;
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
