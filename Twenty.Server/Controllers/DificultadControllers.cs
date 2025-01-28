@@ -57,7 +57,7 @@ namespace Twenty.Server.Controllers
         {
             if (id != entidad.Id)
             {
-                return BadRequest($"No hay un cliente con el ID {id}");
+                return BadRequest($"No hay una Dificultad con el ID {id}");
             }
 
             var EditarEntity = await context.Dificultades.Where(x => x.Id == id).FirstOrDefaultAsync();
